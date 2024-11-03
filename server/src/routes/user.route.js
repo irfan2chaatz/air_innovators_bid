@@ -11,7 +11,7 @@ import multerUpload from '../middlewares/multer.middleware.js'
 const router = express.Router()
 
 /*
-  API Endpoint:  /api/v1/user/register
+  API Endpoint:  /api/user/register
 */
 router.post("/register",
   userRegisterValidation(),
@@ -20,7 +20,7 @@ router.post("/register",
 
 
 /*
-  API Endpoint:  /api/v1/user/login
+  API Endpoint:  /api/user/login
 */
 router.post("/login",
   userLoginValidation(),
@@ -29,7 +29,7 @@ router.post("/login",
 
 
 /*
-  API Endpoint:  /api/v1/user/changepassword
+  API Endpoint:  /api/user/changepassword
 */
 router.post("/changepassword",
   verifyToken,
@@ -38,7 +38,7 @@ router.post("/changepassword",
   changePassword)
 
 /*
-  API Endpoint:  /api/v1/user/updateprofile
+  API Endpoint:  /api/user/updateprofile
 */
 router.post("/updateprofile",
   verifyToken,
@@ -51,7 +51,7 @@ router.get("/logout",
   userLogout)
 
 /*
-  API Endpoint:  /api/v1/user/details/:username
+  API Endpoint:  /api/user/details/:username
 */
 router.get("/details/:username",
   verifyToken,
@@ -64,12 +64,10 @@ router.post("/auth/validate", validateToken)
 router.get("/verify-email/:token", verifyEmail)
 
 
-router.post("/uploadProfilePic",
+router.post("/uploadproductpic",
   verifyToken,
-  multerUpload.single('profile'),
+  multerUpload.single('product'),
   uploadProductPic
 )
-
-//TODO: get other user data by username
 
 export default router;

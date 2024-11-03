@@ -3,7 +3,8 @@ import jwt from 'jsonwebtoken'
 import logger from "../utils/winston.logger.js";
 
 function globalErrorMiddleware(err, req, res, next) {
-    console.log("FROM AIR INNOVATORS GLOBAL ERROR MIDDLEWARE ", err.message)
+    console.log("FROM AIR INNOVATORS GLOBAL ERROR MIDDLEWARE ");
+    console.log(err.message);
 
     // winston logger => error.log
     logger.error(err.message)

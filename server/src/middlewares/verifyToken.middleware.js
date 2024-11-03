@@ -14,17 +14,6 @@ async function verifyToken(req, res, next) {
         var decoded = jwt.verify(token, CONFIG.JWT_SECRET_KEY);
         req.payload = decoded;
 
-        // user exists or not
-        // let userFound = await userModel
-        //     .findById(req.payload.userId)
-        //     .select("-password");
-
-        // if (!userFound) {
-        //     throw new ApiError(401, "User not found");
-        // }
-
-        // req.user = userFound;
-
         next();
 
     } catch (error) {

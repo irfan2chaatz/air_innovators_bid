@@ -6,9 +6,27 @@ import CONFIG from "../config/config.js";
 import { sendMail, emailVerificationMailgenContent } from "../utils/mail.js";
 import { randomUUID } from "node:crypto";
 import jwt from "jsonwebtoken";
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 
 const registerUser = asyncHandler(async (req, res) => {
     let { email, username, password, name } = req.body;
+
+    console.log("received : ", req.body);
+
+
+    if (userFound) {
+        throw new ApiError(409, "User already registered");
+    }
+
+    await prisma.user.create({
+        data: {
+          name,
+          username,
+          email,
+          password
+        },
+    });
 
 
     res.status(200).json(new ApiResponse(200, "Register success"));
